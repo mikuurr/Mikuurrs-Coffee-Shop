@@ -1,0 +1,7 @@
+.background {
+    height: 100vh;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
