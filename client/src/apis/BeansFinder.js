@@ -2,7 +2,7 @@ import axios from "axios";
 import MockAdapter from 'axios-mock-adapter';
 
 let apiInstance = axios.create({
-    baseURL: "http://localhost:3005/beans"
+    baseURL: "https://mikuurrscoffeeshop.onrender.com"
 });
 
 let mock = null;
