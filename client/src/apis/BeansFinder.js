@@ -1,20 +1,20 @@
 import axios from "axios";
 import MockAdapter from 'axios-mock-adapter';
 
-let apiInstance = axios.create({
-    baseURL: "http://localhost:3005/beans"
+const apiInstance = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL || "http://localhost:3005/beans"
 });
 
 let mock = null;
 
-if(process.env.NODE_ENV === 'test') {
-    mock = new MockAdapter(apiInstance);
-    mock.onGet('/').reply(200, {beans: [] });
-} 
+if (process.env.NODE_ENV === 'test') {
+  mock = new MockAdapter(apiInstance);
+  mock.onGet('/').reply(200, { beans: [] });
+}
 
 const exportedObject = { apiInstance };
 if (mock) {
-    exportedObject.mock = mock;
+  exportedObject.mock = mock;
 }
 
 export default exportedObject;
