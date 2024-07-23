@@ -16,7 +16,8 @@ const BeansList = () => {
     const fetchData = async () => {
       try {
         const response = await BeansFinder.apiInstance.get('/');
-        setBeans(response.data.data.beans);
+        console.log(response.data);
+        setBeans(respose.data ? response.data.data.beans: []);
       } catch (err) {
         console.error('Error fetching data:', err);
       }
