@@ -23,7 +23,7 @@ app.get("/beans", async (req, res) => {
             },
         });
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).json({ status: "error" , message: "Internal Server Error" });
     }
 });
