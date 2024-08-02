@@ -16,8 +16,12 @@ const BeansList = () => {
     const fetchData = async () => {
       try {
         const response = await BeansFinder.apiInstance.get('/');
-        console.log(response);
-        if (response.data && response.data.data) {
+        console.log('Response:', response); // Log the entire response object
+
+        // Check for the correct data structure
+        if (response.data && response.data.beans) {
+          setBeans(response.data.beans);
+        } else if (response.data && response.data.data && response.data.data.beans) {
           setBeans(response.data.data.beans);
         } else {
           console.error('Unexpected response structure', response);
