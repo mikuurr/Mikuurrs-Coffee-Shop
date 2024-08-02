@@ -18,7 +18,6 @@ const BeansList = () => {
         const response = await BeansFinder.apiInstance.get('/beans');
         console.log('Response:', response);
 
-        // Check for the correct data structure
         if (response.data && response.data.beans) {
           setBeans(response.data.beans);
         } else if (response.data && response.data.data && response.data.data.beans) {
