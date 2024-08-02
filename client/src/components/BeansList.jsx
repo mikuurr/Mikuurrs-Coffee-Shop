@@ -16,8 +16,12 @@ const BeansList = () => {
     const fetchData = async () => {
       try {
         const response = await BeansFinder.apiInstance.get('/');
-        console.log(response.data);
-        setBeans(response.data ? response.data.data.beans: []);
+        console.log(response);
+        if (response.data && response.data.data) {
+          setBeans(response.data.data.beans);
+        } else {
+          console.error('Unexpected response structure', response);
+        }
       } catch (err) {
         console.error('Error fetching data:', err);
       }
@@ -29,7 +33,7 @@ const BeansList = () => {
     if (isLoggedIn === 'true') {
       setAuthenticated(true);
     }
-  }, [setBeans]);
+  }, [setBeans, setAuthenticated]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
