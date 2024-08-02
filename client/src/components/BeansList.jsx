@@ -18,9 +18,7 @@ const BeansList = () => {
         const response = await BeansFinder.apiInstance.get('/beans');
         console.log('Response:', response);
 
-        if (response.data && response.data.beans) {
-          setBeans(response.data.beans);
-        } else if (response.data && response.data.data && response.data.data.beans) {
+        if (response.data && response.data.data && response.data.data.beans) {
           setBeans(response.data.data.beans);
         } else {
           console.error('Unexpected response structure', response);
