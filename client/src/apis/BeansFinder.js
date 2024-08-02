@@ -2,7 +2,7 @@ import axios from "axios";
 import MockAdapter from 'axios-mock-adapter';
 
 const apiInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || "https://mikuurrscoffeeshop.onrender.com/"
+  baseURL: process.env.REACT_APP_API_BASE_URL || "https://mikuurrscoffeeshop.onrender.com/api"
 });
 
 let mock = null;
