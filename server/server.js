@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const helmet = require("helmet");
 const app = express();
@@ -9,12 +10,11 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, '../client/build')));
 
-//get all beans
-app.get("/beans", async (req, res) => {
+app.get("/api/beans", async (req, res) => {
     try {
         const results = await db.query("SELECT * FROM products");
-
         res.status(200).json({
             status: "success",
             results: results.rows.length,
@@ -24,37 +24,33 @@ app.get("/beans", async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ status: "error" , message: "Internal Server Error" });
+        res.status(500).json({ status: "error", message: "Internal Server Error" });
     }
 });
 
-//get specific beans
-app.get("/beans/:id", async (req, res) => {
+app.get("/api/beans/:id", async (req, res) => {
     console.log(req.params.id);
-    
     try {
         const results = await db.query("SELECT * FROM products where id = $1", [req.params.id]);
-        if(results.rows.length > 0) {
+        if (results.rows.length > 0) {
             res.status(200).json({
                 status: "success",
                 data: {
                     product: results.rows[0],
-            }
-        });
-    } else {
-        res.status(404).json({ status:"error", message: "Bean not found" });
-    }
-
+                },
+            });
+        } else {
+            res.status(404).json({ status: "error", message: "Bean not found" });
+        }
     } catch (err) {
         console.log(err);
-        res.status(500).json({ status:"error", message: "Internal Server Error" });
+        res.status(500).json({ status: "error", message: "Internal Server Error" });
     }
 });
 
-//create beans
-app.post("/beans", async (req, res) => {
+app.post("/api/beans", async (req, res) => {
     try {
-        const results = await db.query("INSERT INTO products (name, price) values ( $1, $2) returning *", [req.body.name, req.body.price] )
+        const results = await db.query("INSERT INTO products (name, price) values ($1, $2) returning *", [req.body.name, req.body.price]);
         res.status(201).json({
             status: "success",
             data: {
@@ -67,41 +63,40 @@ app.post("/beans", async (req, res) => {
     }
 });
 
-//update beans
-app.put("/beans/:id", async (req, res) => {
+app.put("/api/beans/:id", async (req, res) => {
     try {
-        const results = await db.query("UPDATE products SET name = $1, price = $2, on_sale = $3 where id = $4 returning *", [req.body.name, req.body.price, req.body.on_sale, req.params.id] );
+        const results = await db.query("UPDATE products SET name = $1, price = $2, on_sale = $3 where id = $4 returning *", [req.body.name, req.body.price, req.body.on_sale, req.params.id]);
         if (results.rows.length > 0) {
-        res.status(200).json({
-            status: "success",
-            data: {
-                product: results.rows[0],
-            }
-        });
-    } else {
-        res.status(404).json({ status: "error", message: "Bean not found" });
-    }
-    } catch (err) {
-        res.status(500).json({ status: "error", message: "Internal Server Erorr"});
-    }
-});
-
-
-//delete beans
-app.delete("/beans/:id", async (req, res) => {
-    try {
-        const results = await db.query("DELETE FROM products where id = $1", [req.params.id]);
-        res.status(204).json({
-            status: "success",
-        });
-
+            res.status(200).json({
+                status: "success",
+                data: {
+                    product: results.rows[0],
+                },
+            });
+        } else {
+            res.status(404).json({ status: "error", message: "Bean not found" });
+        }
     } catch (err) {
         res.status(500).json({ status: "error", message: "Internal Server Error" });
     }
 });
 
+app.delete("/api/beans/:id", async (req, res) => {
+    try {
+        await db.query("DELETE FROM products where id = $1", [req.params.id]);
+        res.status(204).json({
+            status: "success",
+        });
+    } catch (err) {
+        res.status(500).json({ status: "error", message: "Internal Server Error" });
+    }
+});
 
-const port = process.env.PORT  || 3001;
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
-    console.log(`server is listening on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
