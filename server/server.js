@@ -13,6 +13,7 @@ app.use(express.json());
 app.get('/api/beans', async (req, res) => {
   try {
     const results = await db.query('SELECT * FROM products');
+    console.log('Query results:', results.rows);
     res.status(200).json({
       status: 'success',
       results: results.rows.length,
