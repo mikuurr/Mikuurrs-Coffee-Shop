@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-app.get("/api/beans", async (req, res) => {
+app.get("/", async (req, res) => {
     try {
         const results = await db.query("SELECT * FROM products");
         res.status(200).json({
