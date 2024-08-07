@@ -2,9 +2,11 @@
   "name": "final-pern-app",
   "version": "1.0.0",
   "main": "app.js",
-  "scripts": {
-    "start": "nodemon server.js"
-  },
+"scripts": {
+  "start": "node server.js",
+  "build": "react-scripts build"
+},
+
   "author": "",
   "license": "ISC",
   "dependencies": {
