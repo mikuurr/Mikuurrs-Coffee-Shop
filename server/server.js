@@ -6,8 +6,23 @@ const helmet = require('helmet');
 const app = express();
 const db = require('./db');
 
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://*.bootstrapcdn.com"],
+      stypeSrc: ["'self'", "https://*.bootstrapcdn.com", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https://*.ftcdn.net"],
+      connectSrc: ["'self'", "https://mikuurrscoffeeshop.onrender.com"],
+      fontSrc: ["'self'", "https://*.bootstrapcdn.com"],
+      frameSrc: ["'none'"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
+  },
+}));
+
 app.use(cors());
-app.use(helmet());
 app.use(express.json());
 
 app.get('/api/beans', async (req, res) => {
