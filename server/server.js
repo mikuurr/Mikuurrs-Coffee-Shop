@@ -10,11 +10,11 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://*.bootstrapcdn.com"],
-      stypeSrc: ["'self'", "https://*.bootstrapcdn.com", "'unsafe-inline'"],
+      scriptSrc: ["'self'", "https://*.bootstrapcdn.com", "'unsafe-inline'"],
+      styleSrc: ["'self'", "https://*.bootstrapcdn.com", "'unsafe-inline'"],
       imgSrc: ["'self'", "data:", "https://*.ftcdn.net"],
       connectSrc: ["'self'", "https://mikuurrscoffeeshop.onrender.com"],
-      fontSrc: ["'self'", "https://*.bootstrapcdn.com"],
+      fontSrc: ["'self'", "https://*.bootstrapcdn.com", "https://cdnjs.cloudflare.com"],
       frameSrc: ["'none'"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
