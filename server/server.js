@@ -6,38 +6,11 @@ const helmet = require('helmet');
 const app = express();
 const db = require('./db');
 
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://*.bootstrapcdn.com", "'unsafe-inline'"],
-      styleSrc: [
-        "'self'",
-        "https://*.bootstrapcdn.com",
-        "https://cdn.jsdelivr.net",
-        "https://cdnjs.cloudflare.com",
-        "'unsafe-inline'"
-      ],
-      imgSrc: ["'self'", "data:", "https://*.ftcdn.net"],
-      connectSrc: ["'self'", "https://mikuurrscoffeeshop.onrender.com"],
-      fontSrc: [
-        "'self'",
-        "https://*.bootstrapcdn.com",
-        "https://cdnjs.cloudflare.com",
-        "https://cdn.jsdelivr.net"
-      ],
-      frameSrc: ["'none'"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  },
-}));
-
-
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/beans', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const results = await db.query('SELECT * FROM products');
     console.log('Query results:', results.rows);
