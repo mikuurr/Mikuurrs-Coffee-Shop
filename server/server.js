@@ -15,7 +15,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', async (req, res) => {
+app.get('/api/beans', async (req, res) => {
   try {
     const results = await db.query('SELECT * FROM products');
     console.log('Query results:', results.rows);
