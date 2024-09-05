@@ -16,7 +16,7 @@ const BeansList = () => {
     const fetchData = async () => {
       try {
         const response = await BeansFinder.apiInstance.get("/");
-        console.log('Response:', response);
+        console.log('Response data:', response.data);
 
         if (response.data) {
           setBeans(response.data);
