@@ -18,7 +18,7 @@ const BeansList = () => {
         const response = await BeansFinder.apiInstance.get("/");
         console.log('Response data:', response.data);
 
-        if (response.data) {
+        if (response.data && Array.isArray(response.data)) {
           setBeans(response.data);
         } else {
           console.error('Unexpected response structure', response);
@@ -69,6 +69,10 @@ const BeansList = () => {
         </form>
       </div>
     );
+  }
+
+  if (!Array.isArray(beans)) {
+    return <div>Error loading beans data.</div>;
   }
 
   return (
