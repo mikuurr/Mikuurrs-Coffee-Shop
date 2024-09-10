@@ -75,6 +75,8 @@ const BeansList = () => {
     return <div>Error loading beans data.</div>;
   }
 
+  console.log(beans)
+
   return (
     <div className="beans-list-container">
       <div className="beans-cards-container">
