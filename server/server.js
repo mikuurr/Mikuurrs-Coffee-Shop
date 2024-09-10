@@ -10,13 +10,13 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"], // Adjust this based on your needs
-      styleSrc: ["'self'", "'unsafe-inline'"], // Adjust this based on your needs
-      imgSrc: ["'self'", "data:"], // Allow images from 'self' and data URLs
-      connectSrc: ["'self'"], // Allow connections to 'self'
-      fontSrc: ["'self'"], // Allow fonts from 'self'
-      objectSrc: ["'none'"], // Block all object sources
-      frameAncestors: ["'none'"], // Prevent framing
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      frameAncestors: ["'none'"],
     }
   }
 }));
