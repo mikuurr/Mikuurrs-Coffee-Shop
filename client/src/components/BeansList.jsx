@@ -15,7 +15,7 @@ const BeansList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await BeansFinder.apiInstance.get("/");
+        const response = await BeansFinder.apiInstance.get("/api/beans");
         console.log('Response data:', response.data);
 
         if (response.data && Array.isArray(response.data)) {
