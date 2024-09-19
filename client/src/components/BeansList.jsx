@@ -21,7 +21,7 @@ const BeansList = () => {
         console.log('Response data:', response.data);
 
         if (response.data && Array.isArray(response.data)) {
-          setBeans(response.data);
+          setBeans(response.data.data);
         } else {
           console.error('Unexpected response structure', response);
         }
