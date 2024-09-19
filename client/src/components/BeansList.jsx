@@ -13,8 +13,9 @@ const BeansList = () => {
   const [expandedCard, setExpandedCard] = useState(null);
 
   useEffect(() => {
+    console.log("Fetching beans data...")
+
     const fetchData = async () => {
-      console.log("Fetching beans data...")
       try {
         const response = await BeansFinder.apiInstance.get("/api/beans");
         console.log('Response data:', response.data);
