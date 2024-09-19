@@ -6,6 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import './BeansList.css';
 
+console.log('BeansList component rendered');
+
 const BeansList = () => {
   const { beans, setBeans, addToCart, authenticated, setAuthenticated } = useContext(BeansContext);
   const [username, setUsername] = useState('');
@@ -20,7 +22,7 @@ const BeansList = () => {
         const response = await BeansFinder.apiInstance.get("/api/beans");
         console.log('Response data:', response.data);
 
-        if (response.data && Array.isArray(response.data)) {
+        if (response.data && Array.isArray(response.data.data)) {
           setBeans(response.data.data);
         } else {
           console.error('Unexpected response structure', response);
