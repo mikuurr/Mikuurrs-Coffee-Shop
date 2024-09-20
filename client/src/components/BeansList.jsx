@@ -82,26 +82,27 @@ const BeansList = () => {
   console.log(beans)
 
   return (
-    <div className="beans-list-container">
-      <div className="beans-cards-container">
-        {beans.map(bean => (
-          <Col key={bean.id} className="bean-col">
-            <Card className="bean-card" onClick={() => toggleExpand(bean.id)}>
-              <Card.Img variant="top" className="bean-image" src="https://as2.ftcdn.net/v2/jpg/05/42/33/31/1000_F_542333113_NEfgLqUS8BNgmkKrO4ViJb1cqcBAJNAf.jpg" />
-              <Card.Body className="text-center">
-                <Card.Title className="bean-title">{bean.name}</Card.Title>
-                {expandedCard === bean.id && (
-                  <Card.Text className="bean-description">
-                    {bean.description}
-                  </Card.Text>
-                )}
-                <Button variant="primary" onClick={(e) => { e.stopPropagation(); addToCart(bean); }}>Add to Cart</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </div>
-    </div>
+    <h1>Test if react is working</h1>
+    // <div className="beans-list-container">
+    //   <div className="beans-cards-container">
+    //     {beans.map(bean => (
+    //       <Col key={bean.id} className="bean-col">
+    //         <Card className="bean-card" onClick={() => toggleExpand(bean.id)}>
+    //           <Card.Img variant="top" className="bean-image" src="https://as2.ftcdn.net/v2/jpg/05/42/33/31/1000_F_542333113_NEfgLqUS8BNgmkKrO4ViJb1cqcBAJNAf.jpg" />
+    //           <Card.Body className="text-center">
+    //             <Card.Title className="bean-title">{bean.name}</Card.Title>
+    //             {expandedCard === bean.id && (
+    //               <Card.Text className="bean-description">
+    //                 {bean.description}
+    //               </Card.Text>
+    //             )}
+    //             <Button variant="primary" onClick={(e) => { e.stopPropagation(); addToCart(bean); }}>Add to Cart</Button>
+    //           </Card.Body>
+    //         </Card>
+    //       </Col>
+    //     ))}
+    //   </div>
+    // </div>
   );
 };
 
