@@ -15,9 +15,11 @@ const BeansList = () => {
   const [expandedCard, setExpandedCard] = useState(null);
 
   useEffect(() => {
+    console.log("UseEffect triggered");
     console.log("Fetching beans data...")
 
     const fetchData = async () => {
+      console.log("Attempting API request to /api/beans");
       try {
         const response = await BeansFinder.apiInstance.get("/api/beans");
         console.log('Response data:', response.data);
