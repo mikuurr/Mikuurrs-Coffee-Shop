@@ -12,7 +12,7 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"],
-      imgSrc: ["'self'", "data:", "https://images.unsplash.com"],
+      imgSrc: ["'self'", "data:", "https://images.unsplash.com", "https://as2.ftcdn.net"],
       connectSrc: ["'self'"],
       fontSrc: ["'self'", "https://cdnjs.cloudflare.com"],
       objectSrc: ["'none'"],
