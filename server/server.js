@@ -12,7 +12,7 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"],
-      imgSrc: ["'self'", "data:"],
+      imgSrc: ["'self'", "data:", "https://images.unsplash.com"],
       connectSrc: ["'self'"],
       fontSrc: ["'self'", "https://cdnjs.cloudflare.com"],
       objectSrc: ["'none'"],
@@ -20,6 +20,7 @@ app.use(helmet({
     }
   }
 }));
+
 app.use(cors());
 app.use(express.json());
 
